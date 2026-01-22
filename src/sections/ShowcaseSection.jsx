@@ -57,8 +57,7 @@ const AppShowcase = () => {
                 called Ryde
               </h2>
               <p className="text-white-50 md:text-xl">
-                An app built with React Native, Expo, & TailwindCSS for a fast,
-                user-friendly experience.
+                An app built with Flutter for a fast, user-friendly experience.
               </p>
             </div>
           </div>

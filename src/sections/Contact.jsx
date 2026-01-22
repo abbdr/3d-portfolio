@@ -3,6 +3,7 @@ import emailjs from "@emailjs/browser";
 
 import TitleHeader from "../components/TitleHeader";
 import ContactExperience from "../components/models/contact/ContactExperience";
+import { toast } from "sonner";
 
 const Contact = () => {
   const formRef = useRef(null);
@@ -30,9 +31,12 @@ const Contact = () => {
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
       );
 
+      toast.success(<div className="text-green-500">Email sent!</div>);
+
       // Reset form and stop loading
       setForm({ name: "", email: "", message: "" });
     } catch (error) {
+      toast.error(<div className="text-red-500">Failed sending email!</div>);
       console.error("EmailJS Error:", error); // Optional: show toast
     } finally {
       setLoading(false); // Always stop loading, even on error
@@ -41,14 +45,14 @@ const Contact = () => {
 
   return (
     <section id="contact" className="flex-center section-padding">
-      <div className="w-full h-full md:px-10 px-5">
+      <div className="w-full h-full md:px-10 px-2">
         <TitleHeader
           title="Get in Touch – Let’s Connect"
           sub="💬 Have questions or ideas? Let’s talk! 🚀"
         />
         <div className="grid-12-cols mt-16">
-          <div className="xl:col-span-5">
-            <div className="flex-center card-border rounded-xl p-10">
+          <div className="lg:col-span-5">
+            <div className="flex-center card-border rounded-xl p-5">
               <form
                 ref={formRef}
                 onSubmit={handleSubmit}
@@ -100,14 +104,18 @@ const Contact = () => {
                       {loading ? "Sending..." : "Send Message"}
                     </p>
                     <div className="arrow-wrapper">
-                      <img src="/images/arrow-down.svg" alt="arrow" />
+                      <img
+                        className="hidden md:block"
+                        src="/images/arrow-down.svg"
+                        alt="arrow"
+                      />
                     </div>
                   </div>
                 </button>
               </form>
             </div>
           </div>
-          <div className="xl:col-span-7 min-h-96">
+          <div className="lg:col-span-7 min-h-96 hidden md:block">
             <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
               <ContactExperience />
             </div>
